@@ -39,7 +39,7 @@ class PuppeteerCluster {
         '--disable-features=IsolateOrigins,site-per-process'
       ]
     };
-    if (process.env.NODE_ENV === 'docker') {
+    if (process.env.NODE_ENV === 'lando') {
       puppeteerOptions.executablePath = '/usr/bin/google-chrome-stable';
     }
     if (proxy) {
