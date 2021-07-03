@@ -1,0 +1,32 @@
+name: sneakerbot
+
+env_file:
+  - .env
+
+services:
+  appserver:
+    type: compose
+    run_as_root:
+      - chmod +x ./container_start.sh
+    build:
+      - npm install
+    services:
+      image: samc621/sneakerbot
+      command: dumb-init --
+      ports:
+        - '8000:8000'
+        - '5900:5900'
+      environment:
+        NODE_ENV: lando
+
+  database:
+    type: postgres:13
+    portforward: true
+    creds:
+      database: sneakerbot
+
+tooling:
+  npm:
+    service: appserver
+  npx:
+    service: appserver

@@ -7,7 +7,7 @@ const local = {
     port: process.env.DB_PORT,
     user: process.env.DB_USERNAME,
     database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD
+    //password: process.env.DB_PASSWORD
   },
   useNullAsDefault: true,
   debug: true,
@@ -27,7 +27,7 @@ const docker = {
     port: process.env.DB_PORT,
     user: process.env.DB_USERNAME,
     database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD
+    //password: process.env.DB_PASSWORD
   },
   useNullAsDefault: true,
   debug: false,

@@ -4,3 +4,4 @@ node_modules
 logs
 .vscode/
 !.vscode/launch.json
+.idea
