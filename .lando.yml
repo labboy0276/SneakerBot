@@ -36,3 +36,5 @@ tooling:
     service: appserver
   npx:
     service: appserver
+  node:
+    service: appserver

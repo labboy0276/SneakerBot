@@ -1,5 +1,5 @@
 const rp = require('request-promise');
-require('dotenv-flow').config();
+require('dotenv-flow').config({path: '/app/.env'});
 
 const webhookEndpoint = process.env.WEBHOOK_ENDPOINT;
 
