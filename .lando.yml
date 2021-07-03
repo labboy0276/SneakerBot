@@ -8,8 +8,6 @@ services:
     type: compose
     run_as_root:
       - chmod +x ./container_start.sh
-    build:
-      - npm install
     services:
       image: samc621/sneakerbot
       command: dumb-init --
