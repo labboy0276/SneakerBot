@@ -25,6 +25,12 @@ services:
     creds:
       database: sneakerbot
 
+events:
+  post-start:
+    - appserver: npm install
+    - appserver: npx knex migrate:latest
+    - appserver: npx knex seed:run
+
 tooling:
   npm:
     service: appserver
