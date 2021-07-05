@@ -354,6 +354,8 @@ exports.guestCheckout = async ({
       taskLogger.info('Selecting size');
       const sizesSelector = 'div.c-form-field.c-form-field--radio.ProductSize';
       await page.waitForSelector(sizesSelector, { timeout: 0 });
+      const r = await page.$$(sizesSelector).classList;
+      console.log(r);
 
       let t = await page.evaluate(({ selector, sizeStr }) => {
         const sizeDivs = Array.from(document.querySelectorAll(selector));
