@@ -14,7 +14,8 @@ const Logger = require('./logger');
 const { storePageInTaskCache } = require('./task-cache');
 
 const sites = require('../sites');
-
+const UserAgent = require("user-agents");
+const userAgent = new UserAgent();
 
 puppeteer.use(StealthPlugin());
 puppeteer.use(Ua());
@@ -39,7 +40,8 @@ class PuppeteerCluster {
 //        '--no-sandbox',
 //        '--disable-setuid-sandbox',
         '--disable-web-security',
-        '--disable-features=IsolateOrigins,site-per-process'
+        '--disable-features=IsolateOrigins,site-per-process',
+        '--user-agent=' + userAgent
       ]
     };
     if (process.env.NODE_ENV === 'docker') {
