@@ -357,8 +357,7 @@ exports.guestCheckout = async ({
 
       let t = await page.evaluate(({ selector, sizeStr }) => {
         const sizeDivs = Array.from(document.querySelectorAll(selector));
-        console.log(t);
-        return sizeDivs;
+        return ['hi'];
         // const matchingSizeDiv = sizeDivs.find((el) => new RegExp(sizeStr, 'i').test(el.innerText));
         // const matchingSizeInput = matchingSizeDiv && matchingSizeDiv.querySelector('input');
 
