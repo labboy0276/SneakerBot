@@ -352,33 +352,29 @@ exports.guestCheckout = async ({
       await page.waitForTimeout(2000);
 
       taskLogger.info('Selecting size');
-      const sizesSelector = 'div.c-form-field.c-form-field--radio.ProductSize';
-      await page.waitForSelector(sizesSelector, { timeout: 0 });
-      const r = await page.$(sizesSelector);
-      let value = await r.evaluate(el => el.textContent)
-      console.log(value);
+      // const sizesSelector = 'div.c-form-field.c-form-field--radio.ProductSize';
+      // await page.waitForSelector(sizesSelector, { timeout: 0 });
+      //
+      //
+      //
+      // await page.waitForFunction(({ selector, sizeStr }) => {
+      //   const sizeDivs = Array.from(document.querySelectorAll(selector));
+      //   console.log(sizeDivs);
+      //   const matchingSizeDiv = sizeDivs.find((el) => new RegExp(sizeStr, 'i').test(el.innerText));
+      //   const matchingSizeInput = matchingSizeDiv && matchingSizeDiv.querySelector('input');
+      //   console.log(matchingSizeInput);
+      //   if (matchingSizeInput) {
+      //     matchingSizeInput.click();
+      //     return true;
+      //   }
+      //   return false;
+      // }, {}, { selector: sizesSelector, sizeStr: size });
+      let sizeinput = size + '0';
+      const sizeSelector = 'input#ProductDetails_radio_size_' + sizeinput;
+      await page.waitForSelector(sizeSelector, { timeout: 0 });
+      const size = await page.$$(sizeSelector);
+      await size.click();
 
-      let t = await page.evaluate(({ selector, sizeStr }) => {
-        const sizeDivs = Array.from(document.querySelectorAll(selector));
-        return sizeDivs;
-        // const matchingSizeDiv = sizeDivs.find((el) => new RegExp(sizeStr, 'i').test(el.innerText));
-        // const matchingSizeInput = matchingSizeDiv && matchingSizeDiv.querySelector('input');
-
-      }, {}, { selector: sizesSelector, sizeStr: size });
-      console.log(t);
-
-      await page.waitForFunction(({ selector, sizeStr }) => {
-        const sizeDivs = Array.from(document.querySelectorAll(selector));
-        console.log(sizeDivs);
-        const matchingSizeDiv = sizeDivs.find((el) => new RegExp(sizeStr, 'i').test(el.innerText));
-        const matchingSizeInput = matchingSizeDiv && matchingSizeDiv.querySelector('input');
-        console.log(matchingSizeInput);
-        if (matchingSizeInput) {
-          matchingSizeInput.click();
-          return true;
-        }
-        return false;
-      }, {}, { selector: sizesSelector, sizeStr: size });
       taskLogger.info('Selected size');
       await page.waitForTimeout(2000);
 
