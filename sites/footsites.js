@@ -369,11 +369,12 @@ exports.guestCheckout = async ({
       //   }
       //   return false;
       // }, {}, { selector: sizesSelector, sizeStr: size });
-      let sizeinput = size + '0';
-      const sizeSelector = 'input#ProductDetails_radio_size_' + sizeinput;
+      console.log(size);
+      let sizei = size + '0';
+      const sizeSelector = 'input#ProductDetails_radio_size_' + sizei;
       await page.waitForSelector(sizeSelector, { timeout: 0 });
-      const size = await page.$$(sizeSelector);
-      await size.click();
+      const sizeInput = await page.$$(sizeSelector);
+      await sizeInput.click();
 
       taskLogger.info('Selected size');
       await page.waitForTimeout(2000);
