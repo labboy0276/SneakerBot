@@ -317,6 +317,9 @@ exports.guestCheckout = async ({
 
     const domain = url.split('/').slice(0, 3).join('/');
 
+    // set user agent (override the default headless User Agent)
+    await page.setUserAgent('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36');
+
     closeModal({ taskLogger, page });
 
     if (productCode) {
