@@ -30,7 +30,7 @@ class PuppeteerCluster {
     const proxy = validProxy ? createProxyString(validProxy) : null;
 
     const puppeteerOptions = {
-      headless: false,
+      headless: true,
       defaultViewport: null,
       args: [
 //        '--no-sandbox',
