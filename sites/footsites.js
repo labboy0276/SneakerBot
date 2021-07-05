@@ -371,12 +371,12 @@ exports.guestCheckout = async ({
       const sizeInput = await page.$(sizeSelector, { timeout: 0 });
       await sizeInput.evaluate((e) => e.click());
 
-      const checked = "div.c-form-field c-form-field--radio c-form-field--checked ProductSize";
-      let ee = await page.evaluate((a) => {
-        let trill = a.getElementsByTagName('input')
-        return trill.name;
-      }, checked);
-      console.log(ee);
+      // const checked = "div.c-form-field c-form-field--radio c-form-field--checked ProductSize";
+      // let ee = await page.evaluate((a, b) => {
+      //   b.e
+      //   return trill.name;
+      // }, checked, sizeSelector);
+      // console.log(ee);
 
       taskLogger.info('Selected size');
       await page.waitForTimeout(2000);
