@@ -48,6 +48,7 @@ class PuppeteerCluster {
       puppeteerOptions.executablePath = '/usr/bin/google-chrome-stable';
     }
     if (proxy) {
+      console.log(proxy);
       puppeteerOptions.args.push(`--proxy-server=${proxy}`);
     }
     const cluster = await Cluster.launch({
