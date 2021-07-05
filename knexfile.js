@@ -1,4 +1,4 @@
-require('dotenv-flow').config();
+require('dotenv-flow').config({path: '/home/sneakerbot/SneakerBot/.env.local'});
 
 const local = {
   client: 'pg',
@@ -40,8 +40,5 @@ const docker = {
   }
 };
 module.exports = {
-  local,
-  // TODO Add in-memory DB for integration tests
-  test: local,
-  docker
+  local
 };
