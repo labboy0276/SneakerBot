@@ -372,9 +372,9 @@ exports.guestCheckout = async ({
       await sizeInput.evaluate((e) => e.click());
 
       const checked = "div.c-form-field c-form-field--radio c-form-field--checked ProductSize";
-      let ee = await this.page.evaluate((a) => {
-        let trill = a.querySelectorAll('input');
-        return trill.evaluate(el => el.name)
+      let ee = await page.evaluate((a) => {
+        let trill = a.getElementsByTagName('input')
+        return trill.name;
       }, checked);
       console.log(ee);
 
