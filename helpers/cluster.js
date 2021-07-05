@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+const Ua = require('puppeteer-extra-plugin-anonymize-ua');
 const { Cluster } = require('puppeteer-cluster');
 
 const Task = require('../api/Tasks/model');
@@ -14,7 +15,9 @@ const { storePageInTaskCache } = require('./task-cache');
 
 const sites = require('../sites');
 
+
 puppeteer.use(StealthPlugin());
+puppeteer.use(Ua());
 
 class PuppeteerCluster {
   static async build() {
