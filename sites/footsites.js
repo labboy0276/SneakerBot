@@ -336,7 +336,7 @@ exports.guestCheckout = async ({
         await page.goto(url, { waitUntil: ['load', 'domcontentloaded'] });
       }
 
-      console.log(page);
+      console.log(page.$$('body'));
 
       // using timeout 0 in case we are caught in queue...will wait for the selector to appear
       taskLogger.info('Selecting style');
