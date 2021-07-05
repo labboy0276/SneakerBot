@@ -371,9 +371,8 @@ exports.guestCheckout = async ({
       // }, {}, { selector: sizesSelector, sizeStr: size });
       let sizei = size + '0';
       const sizeSelector = 'input#ProductDetails_radio_size_' + sizei;
-      console.log(sizeSelector);
-      await page.waitForSelector(sizeSelector, { timeout: 0 });
-      await page.click(sizeSelector);
+      const sizeInput = await page.$(sizeSelector, { timeout: 0 });
+      await sizeInput.evaluate((e) => e.click());
 
       taskLogger.info('Selected size');
       await page.waitForTimeout(2000);
