@@ -317,7 +317,7 @@ exports.guestCheckout = async ({
 
     const domain = url.split('/').slice(0, 3).join('/');
 
-    //closeModal({ taskLogger, page });
+    closeModal({ taskLogger, page });
 
     if (productCode) {
       await searchByProductCode({
@@ -335,8 +335,6 @@ exports.guestCheckout = async ({
       if (page.url() !== url) {
         await page.goto(url, { waitUntil: ['load', 'domcontentloaded'] });
       }
-
-      console.log(await page.$$('body'));
 
       // using timeout 0 in case we are caught in queue...will wait for the selector to appear
       taskLogger.info('Selecting style');
