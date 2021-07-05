@@ -3,7 +3,7 @@ const pg = require('pg');
 
 const app = express();
 const routes = require('./routes');
-require('dotenv-flow').config();
+require('dotenv-flow').config({path: '/home/sneakerbot/SneakerBot/.env.local'});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

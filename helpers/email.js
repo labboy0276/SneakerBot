@@ -1,4 +1,4 @@
-require('dotenv-flow').config();
+require('dotenv-flow').config({path: '/home/sneakerbot/SneakerBot/.env.local'});
 const nodemailer = require('nodemailer');
 
 exports.sendEmail = async ({ recipient: to, subject, text }) => {
