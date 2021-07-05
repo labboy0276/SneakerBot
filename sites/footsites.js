@@ -317,7 +317,7 @@ exports.guestCheckout = async ({
 
     const domain = url.split('/').slice(0, 3).join('/');
 
-    closeModal({ taskLogger, page });
+    //closeModal({ taskLogger, page });
 
     if (productCode) {
       await searchByProductCode({
@@ -337,13 +337,13 @@ exports.guestCheckout = async ({
       }
 
       // using timeout 0 in case we are caught in queue...will wait for the selector to appear
-      // taskLogger.info('Selecting style');
-      // const stylesSelector = 'div.c-form-field.c-form-field--radio.SelectStyle.col';
-      // await page.waitForSelector(stylesSelector, { timeout: 0 });
-      // const styles = await page.$$(stylesSelector);
-      // await styles[styleIndex].click();
-      // taskLogger.info('Selected style');
-      // await page.waitForTimeout(2000);
+      taskLogger.info('Selecting style');
+      const stylesSelector = 'div.c-form-field.c-form-field--radio.SelectStyle.col';
+      await page.waitForSelector(stylesSelector, { timeout: 0 });
+      const styles = await page.$$(stylesSelector);
+      await styles[styleIndex].click();
+      taskLogger.info('Selected style');
+      await page.waitForTimeout(2000);
 
       taskLogger.info('Selecting size');
       const sizesSelector = 'div.c-form-field.c-form-field--radio.ProductSize';
