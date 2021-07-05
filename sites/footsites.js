@@ -347,7 +347,6 @@ exports.guestCheckout = async ({
       const stylesSelector = 'div.c-form-field.c-form-field--radio.SelectStyle.col';
       await page.waitForSelector(stylesSelector, { timeout: 0 });
       const styles = await page.$$(stylesSelector);
-      console.log(styles[styleIndex]);
       await styles[styleIndex].click();
       taskLogger.info('Selected style');
       await page.waitForTimeout(2000);
@@ -357,6 +356,7 @@ exports.guestCheckout = async ({
       await page.waitForSelector(sizesSelector);
       await page.waitForFunction(({ selector, sizeStr }) => {
         const sizeDivs = Array.from(document.querySelectorAll(selector));
+        console.log(sizeDivs);
         const matchingSizeDiv = sizeDivs.find((el) => new RegExp(sizeStr, 'i').test(el.innerText));
         const matchingSizeInput = matchingSizeDiv && matchingSizeDiv.querySelector('input');
         console.log(matchingSizeInput);
