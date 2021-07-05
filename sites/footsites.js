@@ -369,11 +369,11 @@ exports.guestCheckout = async ({
       //   }
       //   return false;
       // }, {}, { selector: sizesSelector, sizeStr: size });
-      console.log(size);
       let sizei = size + '0';
       const sizeSelector = 'input#ProductDetails_radio_size_' + sizei;
       await page.waitForSelector(sizeSelector, { timeout: 0 });
       const sizeInput = await page.$$(sizeSelector);
+      console.log(sizeInput)
       await sizeInput.click();
 
       taskLogger.info('Selected size');
