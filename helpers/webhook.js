@@ -1,5 +1,5 @@
 const rp = require('request-promise');
-require('dotenv-flow').config({path: '/home/sneakerbot/SneakerBot/.env.local'});
+require('dotenv-flow').config({path: '/home/sneakerbot/SneakerBot'});
 
 const webhookEndpoint = process.env.WEBHOOK_ENDPOINT;
 

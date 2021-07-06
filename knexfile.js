@@ -1,4 +1,4 @@
-require('dotenv-flow').config({path: '/home/sneakerbot/SneakerBot/.env.local'});
+require('dotenv-flow').config({path: '/home/sneakerbot/SneakerBot'});
 
 const local = {
   client: 'pg',
