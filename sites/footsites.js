@@ -376,6 +376,8 @@ exports.guestCheckout = async ({
       // }, checked, sizeSelector);
       // console.log(ee);
 
+      await page.evaluate(() => document.getElementById("ProductDetails_radio_size_180").click());
+
       taskLogger.info('Selected size');
       await page.waitForTimeout(2000);
 
