@@ -340,10 +340,6 @@ exports.guestCheckout = async ({
         await page.goto(url, { waitUntil: ['load', 'domcontentloaded'] });
       }
 
-      let bodyHTML = await page.evaluate(() =>  document.documentElement.outerHTML);
-      // console.log(bodyHTML);
-      fs.writeFileSync('/home/sneakerbot/SneakerBot/text.html', bodyHTML);
-
       // using timeout 0 in case we are caught in queue...will wait for the selector to appear
       taskLogger.info('Selecting style');
       const stylesSelector = 'div.c-form-field.c-form-field--radio.SelectStyle.col';
@@ -383,8 +379,12 @@ exports.guestCheckout = async ({
       taskLogger.info('Selected size');
       await page.waitForTimeout(2000);
 
-      let name = 'screenshot' + Date.now() + '.png';
-      await page.screenshot({path: '/home/sneakerbot/SneakerBot/' + name});
+      // let name = 'screenshot' + Date.now() + '.png';
+      // await page.screenshot({path: '/home/sneakerbot/SneakerBot/' + name});
+
+      let bodyHTML = await page.evaluate(() =>  document.documentElement.outerHTML);
+      // console.log(bodyHTML);
+      fs.writeFileSync('/home/sneakerbot/SneakerBot/text.html', bodyHTML);
 
 
       const atcButtonSelector = 'button.Button.Button.ProductDetails-form__action';
