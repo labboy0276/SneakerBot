@@ -376,10 +376,10 @@ exports.guestCheckout = async ({
       // }, checked, sizeSelector);
       // console.log(ee);
 
-      let trill = await page.evaluate(() =>
-          document.querySelector('div.c-form-field--checked.ProductSize input').getAttribute('name')
-      );
-      console.log(trill);
+      // let trill = await page.evaluate(() =>
+      //     document.querySelector('div.c-form-field--checked.ProductSize input').getAttribute('name')
+      // );
+      // console.log(trill);
 
       taskLogger.info('Selected size');
       await page.waitForTimeout(2000);
