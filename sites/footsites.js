@@ -364,33 +364,8 @@ exports.guestCheckout = async ({
         }
         return false;
       }, {}, { selector: sizesSelector, sizeStr: size });
-      // let sizei = size + '0';
-      // const sizeSelector = 'input#ProductDetails_radio_size_' + sizei;
-      // const sizeInput = await page.$(sizeSelector, { timeout: 0 });
-      // await sizeInput.evaluate((e) => e.click());
-
-      // const checked = "div.c-form-field c-form-field--radio c-form-field--checked ProductSize";
-      // let ee = await page.evaluate((a, b) => {
-      //   b.e
-      //   return trill.name;
-      // }, checked, sizeSelector);
-      // console.log(ee);
-
-      // let trill = await page.evaluate(() =>
-      //     document.querySelector('div.c-form-field--checked.ProductSize input').getAttribute('name')
-      // );
-      // console.log(trill);
-
       taskLogger.info('Selected size');
       await page.waitForTimeout(2000);
-
-      // let name = 'screenshot' + Date.now() + '.png';
-      // await page.screenshot({path: '/home/sneakerbot/SneakerBot/' + name});
-
-      // let bodyHTML = await page.evaluate(() =>  document.documentElement.outerHTML);
-      // // console.log(bodyHTML);
-      // fs.writeFileSync('/home/sneakerbot/SneakerBot/text.html', bodyHTML);
-
 
       const atcButtonSelector = 'button.Button.Button.ProductDetails-form__action';
       await page.waitForSelector(atcButtonSelector, { timeout: 0 });
