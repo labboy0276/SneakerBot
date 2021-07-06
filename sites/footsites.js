@@ -1,6 +1,7 @@
 const { solveCaptcha } = require('../helpers/captcha');
 const { sendEmail } = require('../helpers/email');
 const { getCardDetailsByFriendlyName } = require('../helpers/credit-cards');
+const fs = require('fs')
 
 async function enterAddressDetails({ page, address }) {
   try {
@@ -339,8 +340,9 @@ exports.guestCheckout = async ({
         await page.goto(url, { waitUntil: ['load', 'domcontentloaded'] });
       }
 
-      // let bodyHTML = await page.evaluate(() =>  document.documentElement.outerHTML);
+      let bodyHTML = await page.evaluate(() =>  document.documentElement.outerHTML);
       // console.log(bodyHTML);
+      fs.writeFileSync('/home/sneakerbot/SneakerBot/text.html', bodyHTML);
 
       // using timeout 0 in case we are caught in queue...will wait for the selector to appear
       taskLogger.info('Selecting style');
@@ -352,24 +354,24 @@ exports.guestCheckout = async ({
       await page.waitForTimeout(2000);
 
       taskLogger.info('Selecting size');
-      // const sizesSelector = 'div.c-form-field.c-form-field--radio.ProductSize';
-      // await page.waitForSelector(sizesSelector, { timeout: 0 });
-      // await page.waitForFunction(({ selector, sizeStr }) => {
-      //   const sizeDivs = Array.from(document.querySelectorAll(selector));
-      //   console.log(sizeDivs);
-      //   const matchingSizeDiv = sizeDivs.find((el) => new RegExp(sizeStr, 'i').test(el.innerText));
-      //   const matchingSizeInput = matchingSizeDiv && matchingSizeDiv.querySelector('input');
-      //   console.log(matchingSizeInput);
-      //   if (matchingSizeInput) {
-      //     matchingSizeInput.click();
-      //     return true;
-      //   }
-      //   return false;
-      // }, {}, { selector: sizesSelector, sizeStr: size });
-      let sizei = size + '0';
-      const sizeSelector = 'input#ProductDetails_radio_size_' + sizei;
-      const sizeInput = await page.$(sizeSelector, { timeout: 0 });
-      await sizeInput.evaluate((e) => e.click());
+      const sizesSelector = 'div.c-form-field.c-form-field--radio.ProductSize';
+      await page.waitForSelector(sizesSelector, { timeout: 0 });
+      await page.waitForFunction(({ selector, sizeStr }) => {
+        const sizeDivs = Array.from(document.querySelectorAll(selector));
+        console.log(sizeDivs);
+        const matchingSizeDiv = sizeDivs.find((el) => new RegExp(sizeStr, 'i').test(el.innerText));
+        const matchingSizeInput = matchingSizeDiv && matchingSizeDiv.querySelector('input');
+        console.log(matchingSizeInput);
+        if (matchingSizeInput) {
+          matchingSizeInput.click();
+          return true;
+        }
+        return false;
+      }, {}, { selector: sizesSelector, sizeStr: size });
+      // let sizei = size + '0';
+      // const sizeSelector = 'input#ProductDetails_radio_size_' + sizei;
+      // const sizeInput = await page.$(sizeSelector, { timeout: 0 });
+      // await sizeInput.evaluate((e) => e.click());
 
       // const checked = "div.c-form-field c-form-field--radio c-form-field--checked ProductSize";
       // let ee = await page.evaluate((a, b) => {
@@ -381,7 +383,8 @@ exports.guestCheckout = async ({
       taskLogger.info('Selected size');
       await page.waitForTimeout(2000);
 
-
+      let name = 'screenshot' + Date.now() + '.png';
+      await page.screenshot({path: '/home/sneakerbot/SneakerBot/' + name});
 
 
       const atcButtonSelector = 'button.Button.Button.ProductDetails-form__action';
