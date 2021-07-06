@@ -376,7 +376,10 @@ exports.guestCheckout = async ({
       // }, checked, sizeSelector);
       // console.log(ee);
 
-      await page.evaluate(() => document.getElementById("ProductDetails_radio_size_180").click());
+      let trill = await page.evaluate(() =>
+          document.querySelector('div.c-form-field--checked.ProductSize input').getAttribute('name')
+      );
+      console.log(trill);
 
       taskLogger.info('Selected size');
       await page.waitForTimeout(2000);
@@ -384,9 +387,9 @@ exports.guestCheckout = async ({
       // let name = 'screenshot' + Date.now() + '.png';
       // await page.screenshot({path: '/home/sneakerbot/SneakerBot/' + name});
 
-      let bodyHTML = await page.evaluate(() =>  document.documentElement.outerHTML);
-      // console.log(bodyHTML);
-      fs.writeFileSync('/home/sneakerbot/SneakerBot/text.html', bodyHTML);
+      // let bodyHTML = await page.evaluate(() =>  document.documentElement.outerHTML);
+      // // console.log(bodyHTML);
+      // fs.writeFileSync('/home/sneakerbot/SneakerBot/text.html', bodyHTML);
 
 
       const atcButtonSelector = 'button.Button.Button.ProductDetails-form__action';
